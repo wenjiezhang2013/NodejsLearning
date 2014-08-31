@@ -1,6 +1,9 @@
 var http = require("http");
 var fs = require("fs");
 
+var config = JSON.parse(fs.readFileSync("config.json"));
+
+
 console.log("Starting....");
 var server = http.createServer(function(req, resp){
     console.log("Received request: " + req.url);
@@ -17,6 +20,6 @@ var server = http.createServer(function(req, resp){
 });
 
 
-server.listen(8000, "localhost", function(){
-    console.log("Listening at port 8000.....");
+server.listen(config.port, config.host, function(){
+    console.log("Listening at port " + config.port + ".........");
 })
